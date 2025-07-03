@@ -1,7 +1,9 @@
-Pyicub API documents
-======================================
+API Reference
+=============
 
-this part will be automatically filled with the pyicub api
+.. toctree::
+   :maxdepth: 2
+   :glob:
 
-1. api
-----------------------------------
+   modules* 
+   pyicub*

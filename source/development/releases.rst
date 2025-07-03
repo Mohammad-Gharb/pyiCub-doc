@@ -37,7 +37,7 @@ We apply SemVer *practically*, especially for active development phases where ``
 Major Changes (``v1.x`` branches)
 ---------------------------------
 
-Before changing the branches, it is important to understand the branching structure in Pyicub. It is described in the :doc:`../Guide/Github_workflow`.
+Before changing the branches, it is important to understand the branching structure in Pyicub. It is described in the :doc:`Github <../contributions/github.html>`.
 
 If a significant redesign or architectural change is made (e.g., migrating from ``icubSim`` to ``gazebo``), we create a new long-lived version branch such as ``v1.0``. These branches represent parallel supported versions that may diverge in tooling or dependencies.
 
@@ -46,7 +46,7 @@ This allows us to maintain multiple stable versions of the library (e.g., ``pyic
 Release Criteria
 ----------------
 
-Before a release can be made, all code changes must follow the PR process described in :doc:`./Pull_request`.
+Before a release can be made, all code changes must follow the PR process described in :doc:`Pull Request <../contributions/pull_requests.html>`.
 
 Summary:
 

@@ -6,6 +6,11 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../../pyicub'))  # Adjust relative path as needed
+
 project = 'pyiCub-doc'
 copyright = '2025, West'
 author = 'West'
@@ -13,7 +18,13 @@ author = 'West'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx_rtd_theme",
+    "sphinx.ext.intersphinx",
+]
 
 templates_path = ['_templates']
 exclude_patterns = []
