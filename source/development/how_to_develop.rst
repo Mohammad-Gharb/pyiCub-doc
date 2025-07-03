@@ -93,7 +93,7 @@ Once launched, you will be dropped into:
 Validate Setup
 ~~~~~~~~~~~~~~
 
-An example to validate the setup, following the `test guidelines <../contributions/testing>`_, could be:
+An example to validate the setup, following the `test guidelines <../contributions/testing.html>`_, could be:
 
 .. code-block:: bash
 
@@ -109,7 +109,7 @@ You should see smoke tests passing, confirming your container is working.
 3. Code Contribution Workflow
 -----------------------------
 
-Here below it is show an example taken from the `Github Workflow documentation <../contributions/github>`_:
+Here below it is show an example taken from the `Github Workflow documentation <../contributions/github.html>`_:
 
 Create a Feature Branch
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -149,7 +149,7 @@ Commit Changes
 4. Writing and Running Tests
 ----------------------------
 
-Add tests in the ``tests/`` directory. Example written following the following `important guideline <../contributions/testing>`_:
+Add tests in the ``tests/`` directory. Example written following the following `important guideline <../contributions/testing.html>`_:
 
 .. code-block:: python
 
@@ -200,10 +200,10 @@ Then push:
 6. Pull Request
 ---------------
 
-Following the guide obtained from the `Pull request guideline <../contributions/pull_requests>`_:
+Following the guide obtained from the `Pull request guideline <../contributions/pull_requests.html>`_:
 
 1. Open a PR on GitHub.
-2. Use the `template <../contributions/pull_requests#pull-request-template>`_ and assign reviewers.
+2. Use the `template <../contributions/pull_requests.html#pull-request-template>`_ and assign reviewers.
 3. PRs must pass:
    - Linting
    - Type checks
