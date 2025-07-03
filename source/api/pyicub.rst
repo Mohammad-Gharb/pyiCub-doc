@@ -19,53 +19,53 @@ pyicub.actions module
 
 .. automodule:: pyicub.actions
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.fsm module
 -----------------
 
 .. automodule:: pyicub.fsm
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.helper module
 --------------------
 
 .. automodule:: pyicub.helper
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.requests module
 ----------------------
 
 .. automodule:: pyicub.requests
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.rest module
 ------------------
 
 .. automodule:: pyicub.rest
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.utils module
 -------------------
 
 .. automodule:: pyicub.utils
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
 
 .. automodule:: pyicub
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
