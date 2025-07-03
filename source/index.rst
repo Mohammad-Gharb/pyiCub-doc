@@ -48,5 +48,7 @@ Welcome to pyiCub-doc's documentation!
 
    contributions/project_contribution
    contributions/doc_contribution
+   contributions/testing
    contributions/pull_requests
+   contributions/github
    contributions/github_issues

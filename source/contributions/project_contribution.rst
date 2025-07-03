@@ -14,21 +14,21 @@ Before contributing, please ensure that you have:
 - A fork of the repository
 - A local development environment properly set up
 
-Familiarize yourself with the `GitHub Workflow <../Guide/Github_workflow.md>`_ to understand our development process and how branches are structured and maintained. Even though as a team we are working in the same repository, refer to the `branching strategy <../Guide/Github_workflow.md>`_ once you have forked the repository.
+Familiarize yourself with the `GitHub Workflow <github>`_ to understand our development process and how branches are structured and maintained. Even though as a team we are working in the same repository, refer to the `branching strategy <../Guide/Github_workflow.md>`_ once you have forked the repository.
 
 Development Workflow
 --------------------
 
-It is essential to utilize the provided `Docker <../Development/Docker.md>`_ container for development to ensure a consistent and reproducible environment.
+It is essential to utilize the provided `Docker <../development/docker>`_ container for development to ensure a consistent and reproducible environment.
 
-Once the container is running, to contribute code effectively follow `this <../Development/How_to_develop.md>`_ guideline.
+Once the container is running, to contribute code effectively follow `this <../development/how_to_develop>`_ guideline.
 
-Ensure your code follows our `Testing Strategy <../Management/Test_strategy.md>`_ and passes all required checks (`local test <../Development/Docker.md#running-tests>`_, CI, coverage, linting).
+Ensure your code follows our `Testing Strategy <testing>`_ and passes all required checks (`local test <../development/docker#running-tests>`_, CI, coverage, linting).
 
 Opening a Pull Request
 ----------------------
 
-We enforce a standardized pull request process to maintain code quality and traceability. Please follow the guidelines and use the `PR template <../Development/Pull_request.md#pull-request-template>`_ when opening a pull request.
+We enforce a standardized pull request process to maintain code quality and traceability. Please follow the guidelines and use the `PR template <pull_requests#pull-request-template>`_ when opening a pull request.
 
 Each PR must:
 
@@ -41,7 +41,7 @@ Each PR must:
 Testing Guidelines
 ------------------
 
-Our testing strategy is described in detail `here <../Management/Test_strategy.md>`_. Highlights:
+Our testing strategy is described in detail `here <testing>`_. Highlights:
 
 - Tests must run in a simulation environment (no physical robot dependency)
 - We aim for >90% coverage on core modules but it is not strictly mandatory
@@ -53,7 +53,7 @@ Test cases should be located under the ``tests/`` directory.
 Release Process
 ---------------
 
-All contributions that affect behavior, APIs, or modules should be reflected in the changelog and considered for version bumping. Our `Release Guidelines <../Development/Releases.md>`_ explain:
+All contributions that affect behavior, APIs, or modules should be reflected in the changelog and considered for version bumping. Our `Release Guidelines <../development/releases>`_ explain:
 
 - When and how to bump versions (Semantic Versioning)
 - How to tag releases
@@ -64,7 +64,7 @@ Only maintainers can tag and publish official releases.
 Issue Management
 ----------------
 
-We track all tasks using GitHub Projects. Refer to the `Issue Triage Guide <../Development/Github_issues.md>`_ for:
+We track all tasks using GitHub Projects. Refer to the `Issue Triage Guide <github_issues>`_ for:
 
 - Label definitions
 - Priority assignments
@@ -90,7 +90,7 @@ Improvements to documentation, examples, or tutorials are welcome. These changes
 Style and Best Practices
 ------------------------
 
-- Please follow the `Coding conventions guideline <../Development/Coding_conventions.md>`_
+- Please follow the `Coding conventions guideline <../design/coding_standards>`_
 - Write clear and concise commit messages
 - Keep documentation up to date with code changes
 
@@ -100,7 +100,7 @@ Reporting Issues or Requesting Features
 To report bugs, suggest enhancements, or request support:
 
 1. Open an issue on GitHub
-2. Follow the `triage and labeling process <../Development/Github_issues.md>`_
+2. Follow the `triage and labeling process <github_issues>`_
 3. Provide sufficient context, logs, and steps to reproduce
 
 Communication
