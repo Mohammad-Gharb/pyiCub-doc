@@ -9,21 +9,21 @@ pyicub.controllers.gaze module
 
 .. automodule:: pyicub.controllers.gaze
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.controllers.position module
 ----------------------------------
 
 .. automodule:: pyicub.controllers.position
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
 
 .. automodule:: pyicub.controllers
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:

@@ -9,29 +9,29 @@ pyicub.core.logger module
 
 .. automodule:: pyicub.core.logger
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.core.ports module
 ------------------------
 
 .. automodule:: pyicub.core.ports
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 pyicub.core.rpc module
 ----------------------
 
 .. automodule:: pyicub.core.rpc
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
 
 .. automodule:: pyicub.core
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
