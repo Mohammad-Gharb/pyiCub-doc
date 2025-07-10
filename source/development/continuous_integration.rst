@@ -67,38 +67,7 @@ This Bash script is the core of the CI logic. It is executed inside the ``pyicub
 - Monitors readiness of the simulation environment
 - Handles timeouts and prints useful error messages
 
-Git Pre-push Hook
------------------
 
-To ensure tests are always run before sharing code:
-
-- A ``pre-push`` Git hook is installed in ``.git/hooks/pre-push``.
-- This hook launches the local CI pipeline using Docker.
-- If tests fail, the push is aborted.
-- This guarantees code is only pushed when the local integration passes.
-
-Example of pre-push logic:
-
-.. code-block:: bash
-
-    #!/bin/sh
-
-    if [ "$(id -u)" != "0" ]; then
-      exit 0
-    fi
-
-    echo " Running tests before pushing..."
-
-    # Run your test script
-    bash ../scripts/runTests.sh
-
-    # If the test fails, block the push
-    if [ $? -ne 0 ]; then
-      echo " Tests failed. Push rejected."
-      exit 1
-    fi
-
-    echo " Tests passed. Proceeding"
 
 CI Success Criteria
 -------------------

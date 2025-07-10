@@ -3,8 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pyiCub-doc's documentation!
-======================================
+Pyicub Documentation
+====================
+
+Welcome to the official documentation for `pyiCub <https://github.com/s4hri/pyicub>`_ — an open-source Python interface for interacting with the iCub humanoid robot.
+
+Overview
+--------
+
+`pyiCub <https://github.com/s4hri/pyicub>`_ simplifies communication and control of the iCub robot through a modular and developer-friendly Python API. It includes tools for development, testing, and integration, making it suitable for researchers, developers, and roboticists.
+
+Whether you're contributing to development or just getting started, this documentation will help you navigate the system and contribute effectively.
 
 .. toctree::
    :maxdepth: 2

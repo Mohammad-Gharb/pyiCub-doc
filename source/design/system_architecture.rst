@@ -4,6 +4,14 @@ System Architecture
 The system architecture of PyiCub is designed to simplify the control of the iCub robot by providing intuitive, high-level Python interfaces.
 Here's a summary of its key components and their functions:
 
+
+.. image:: ../_static/pyicub_design.jpg
+   :alt: System Architecture Diagram
+   :align: center
+   :width: 600px
+
+
+
 * **Helper Module** (``helper.py``):
     This module serves as the primary entry point to PyiCub's functionalities. It offers a high-level Python interface, abstracting the complexity of the underlying YARP middleware. Through this module, users gain intuitive control over motors, gaze, cameras, speech, facial expressions, and both predefined and custom robot actions via a unified, object-oriented interface. The ``iCub`` class, implemented as a singleton, is at its core, orchestrating critical subsystems like position and gaze controllers, action management, and monitoring tools.
 
