@@ -131,9 +131,9 @@ complex URDF file
 
         <div id="menu">
             <ul id="urdf-options">
-                <li urdf="/en/latest/_static/urdf/T12/urdf/T12_flipped.URDF" color="#E91E63" package="/en/latest/_static/urdf/T12">ATHLETE</li>
-                <li urdf="/en/latest/_static/urdf/TriATHLETE/urdf/TriATHLETE_flipped.URDF" color="#009688" package="/en/latest/_static/urdf/TriATHLETE">TriATHLETE</li>
-                <li urdf="/en/latest/_static/urdf/TriATHLETE_Climbing/urdf/TriATHLETE_flipped.URDF" color="#FFB300" package="/en/latest/_static/urdf/TriATHLETE_Climbing">TriATHLETE Climbing</li>
+                <li urdf="/_static/urdf/T12/urdf/T12_flipped.URDF" color="#E91E63" package="/en/latest/_static/urdf/T12">ATHLETE</li>
+                <li urdf="/_static/urdf/TriATHLETE/urdf/TriATHLETE_flipped.URDF" color="#009688" package="/en/latest/_static/urdf/TriATHLETE">TriATHLETE</li>
+                <li urdf="/_static/urdf/TriATHLETE_Climbing/urdf/TriATHLETE_flipped.URDF" color="#FFB300" package="/en/latest/_static/urdf/TriATHLETE_Climbing">TriATHLETE Climbing</li>
             </ul>
 
             <div id="controls" class="hidden">
