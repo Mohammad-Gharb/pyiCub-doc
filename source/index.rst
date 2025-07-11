@@ -61,3 +61,10 @@ Whether you're contributing to development or just getting started, this documen
    contributions/pull_requests
    contributions/github
    contributions/github_issues
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: geometry:
+
+   geometry/simple

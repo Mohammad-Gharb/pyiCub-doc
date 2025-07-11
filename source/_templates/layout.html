@@ -1,0 +1,13 @@
+{# docs/source/_templates/layout.html #}
+{# This file extends the default Read the Docs theme layout to inject custom elements. #}
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+    {{ super() }}
+    <script type="importmap">{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js",
+    "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+  }
+}</script>
+    {% endblock %}
