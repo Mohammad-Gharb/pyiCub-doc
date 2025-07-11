@@ -69,9 +69,9 @@ function init() {
     const manager = new LoadingManager();
     const loader = new URDFLoader(manager);
     loader.packages = {
-    'T12': '../../urdf/T12' // Mapped directly to /_static/T12
+    'T12': '../urdf/T12' // Mapped directly to /_static/T12
 };
-    loader.load('../../urdf/T12/urdf/T12_flipped.URDF', result => {
+    loader.load('../urdf/T12/urdf/T12_flipped.URDF', result => {
 // source/_static/urdf/T12/urdf/T12_flipped.URDF
 // source/_static/urdf_loader/example/src/simple.js
         robot = result;
