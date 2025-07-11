@@ -68,3 +68,4 @@ Whether you're contributing to development or just getting started, this documen
    :caption: geometry:
 
    geometry/simple
+   geometry/complex
