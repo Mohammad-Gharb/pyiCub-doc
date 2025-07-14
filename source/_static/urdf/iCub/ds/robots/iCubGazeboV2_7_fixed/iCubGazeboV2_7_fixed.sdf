@@ -1,0 +1,14 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name="iCub_fixed">
+    <include>
+      <uri>model://iCubGazeboV2_7</uri>
+      <pose>0.0 0 1.0 0 0 3.14</pose>
+    </include>
+
+    <joint name="fixed_base" type="fixed">
+      <parent>world</parent>
+      <child>iCub::root_link</child>
+    </joint>
+  </model>
+</sdf>

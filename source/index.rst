@@ -69,3 +69,4 @@ Whether you're contributing to development or just getting started, this documen
 
    geometry/simple
    geometry/complex
+   geometry/Icub
