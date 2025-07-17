@@ -108,6 +108,22 @@ Here is little Icub and you can play with it :)
             display: table;
             clear: both;
         }
+        #toggleWaveButton {
+            display: block;
+            width: calc(100% - 20px); /* Full width minus padding */
+            padding: 10px;
+            margin: 10px; /* Adjust margin to fit well */
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        #toggleWaveButton:hover {
+            background-color: #0056b3;
+        }
     </style>
 
 
