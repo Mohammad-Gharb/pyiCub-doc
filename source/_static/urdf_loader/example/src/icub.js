@@ -23,35 +23,44 @@ import URDFLoader from '../../src/URDFLoader.js';
 let scene, camera, renderer, robot, controls;
 let viewerContainer;
 let jointControlsContainer;
-let isWaving = true;
-let waveStartTime = 0;
-const waveSpeed = 2; 
-const waveJointName = 'r_elbow'; 
-let jointSliders = {}; 
+// let toggleWaveButton; // <-- REMOVED
+let maximizeButton;
+
+const raycaster = new Raycaster();
+const mouse = new Vector2();
+
+let isWaving = true; // Waving is ON by default
+let waveStartTime = 0; // Will be set when robot loads
+const waveSpeed = 2;
+const waveJointName = 'r_elbow'; // Waving hand joint. Can be 'r_elbow' if preferred.
+
+let jointSliders = {};
+
 init();
 render();
 
 function init() {
-
     scene = new Scene();
     scene.background = new Color(0x263238);
 
     camera = new PerspectiveCamera();
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
-    
 
     renderer = new WebGLRenderer({ antialias: true });
     renderer.outputEncoding = sRGBEncoding;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
+
     viewerContainer = document.getElementById('urdf-viewer-container');
     jointControlsContainer = document.getElementById('joint-controls-container');
+    maximizeButton = document.getElementById('maximizeButton');
+
     if (viewerContainer) {
         viewerContainer.appendChild(renderer.domElement);
     } else {
-        console.error("URDF viewer container div not found!");
-        document.body.appendChild(renderer.domElement); 
+        console.error("URDF viewer container div not found! Appending to body as fallback.");
+        document.body.appendChild(renderer.domElement);
     }
 
     const directionalLight = new DirectionalLight(0xffffff, 1.0);
@@ -83,12 +92,10 @@ function init() {
     }
     loader.load('../_static/urdf/iCub/ds/robots/iCubGazeboV2_5_visuomanip/model.urdf', result => {
         robot = result;
-
     });
 
-    // wait until all the geometry has loaded to add the model to the scene
     manager.onLoad = () => {
-        console.log(robot.joints)
+        console.log(robot.joints);
         console.log("Number of joints:", Object.keys(robot.joints).length);
 
         robot.rotation.x = -Math.PI / 2;
@@ -119,9 +126,6 @@ function init() {
 
         cameraDistance *= 0.8; // Add some padding so it's not right on the edge of the view
 
-        // --- OPTIMIZED CAMERA POSITIONING ---
-        // Position the camera to look at the center of the robot from a good viewing angle
-        // For a robot, a common approach is to place the camera slightly above and in front.
         camera.position.set(center.x + cameraDistance * 0.5, center.y + cameraDistance * 0.75, center.z + cameraDistance * 1.5);
         camera.lookAt(center); // Make camera look at the center of the robot
 
@@ -131,32 +135,29 @@ function init() {
         controls.maxDistance = maxDim * 4;   // Allow zooming out further, adjust as needed
         controls.update(); // Crucial: update controls after changing target and camera position
 
-         // --- NEW: Populate Joint Controls ---
+        waveStartTime = performance.now();
         if (jointControlsContainer) {
-            jointControlsContainer.innerHTML = '<h2>Joint Controls</h2>'; // Clear "Loading joints..."
+            jointControlsContainer.innerHTML = '<h2>Joint Controls</h2>';
             for (const jointName in robot.joints) {
                 const joint = robot.joints[jointName];
 
-                // Only add controls for revolute (and optionally prismatic) joints
                 if (joint.jointType === 'revolute' || joint.jointType === 'prismatic') {
                     const controlDiv = document.createElement('div');
                     controlDiv.className = 'joint-control';
 
-                    // --- NEW: Wrapper for label and value display ---
                     const headerDiv = document.createElement('div');
-                    headerDiv.className = 'joint-header'; // Add a class for styling
-                    
+                    headerDiv.className = 'joint-header';
+
                     const label = document.createElement('label');
                     label.textContent = joint.name;
-                    headerDiv.appendChild(label); // Append label to the headerDiv
+                    headerDiv.appendChild(label);
 
-                    // Display current angle
                     const valueDisplay = document.createElement('span');
                     valueDisplay.className = 'joint-value';
-                    valueDisplay.textContent = `${(MathUtils.radToDeg(joint.angle || 0)).toFixed(1)}°`; // Initial value in degrees
-                    headerDiv.appendChild(valueDisplay); // Append valueDisplay to the headerDiv
-                    
-                    controlDiv.appendChild(headerDiv); // Add the headerDiv to the main controlDiv
+                    valueDisplay.textContent = `${(MathUtils.radToDeg(joint.angle || 0)).toFixed(1)}°`;
+                    headerDiv.appendChild(valueDisplay);
+
+                    controlDiv.appendChild(headerDiv);
 
                     const slider = document.createElement('input');
                     slider.type = 'range';
@@ -169,19 +170,45 @@ function init() {
                         const angleDeg = parseFloat(slider.value);
                         const angleRad = MathUtils.degToRad(angleDeg);
                         joint.setJointValue(angleRad);
-                        valueDisplay.textContent = `${angleDeg.toFixed(1)}°`; // Update display
+                        valueDisplay.textContent = `${angleDeg.toFixed(1)}°`;
                     };
 
-                    controlDiv.appendChild(slider); // Slider is appended after the headerDiv
+                    controlDiv.appendChild(slider);
                     jointControlsContainer.appendChild(controlDiv);
-                    jointSliders[jointName] = { slider: slider, valueDisplay: valueDisplay }; // <--- NEW
+                    jointSliders[jointName] = { slider: slider, valueDisplay: valueDisplay };
                 }
             }
+        }
+
+        // No more toggleWaveButton click listener needed as it's default behavior
+
+        if (maximizeButton) {
+            maximizeButton.onclick = () => {
+                console.log("maximize clicked");
+                const isMaximized = viewerContainer.classList.toggle('maximized');
+
+                if (isMaximized) {
+                    maximizeButton.textContent = 'Restore';
+                    // jointControlsContainer.style.display = 'none';
+                } else {
+                    maximizeButton.textContent = 'Maximize';
+                    // jointControlsContainer.style.display = 'block';
+                }
+                onResize();
+            };
         }
     };
 
     onResize();
     window.addEventListener('resize', onResize);
+    renderer.domElement.addEventListener('click', onClick, false);
+
+
+}
+
+function onClick(event) {
+    isWaving = false
+
 
 }
 viewerContainer.addEventListener('joint-mouseover', e => {
@@ -226,7 +253,6 @@ function render(time) {
         const newAngleRad = center + amplitude * Math.sin(elapsedTime * waveSpeed);
         joint.setJointValue(newAngleRad);
 
-        // Update the corresponding slider and its display
         if (jointSliders[waveJointName]) {
             jointSliders[waveJointName].slider.value = MathUtils.radToDeg(newAngleRad).toFixed(1);
             jointSliders[waveJointName].valueDisplay.textContent = `${MathUtils.radToDeg(newAngleRad).toFixed(1)}°`;

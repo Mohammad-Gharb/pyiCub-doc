@@ -6,43 +6,61 @@ Here is little Icub and you can play with it :)
 .. raw:: html
 
     <style>
-       /* Optional: If you need these styles specifically for the viewer div */
+        /* General body styling for better layout */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
 
-       #urdf-viewer-container { /* Give your div a unique ID for styling */
-           width: 700px; /* Or whatever size you need */
-           height: 600px;
-           border: 1px solid #ccc;
-           margin: 20px auto; /* Center the div */
-           background-color: #eee;
-       }
-       /* Add some basic styling for the viewer */
+        /* Adjust viewer-and-controls-wrapper to center its content */
+        .viewer-and-controls-wrapper {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: flex-start; /* Align to top */
+            width: fit-content; /* Only take up space needed by content */
+            margin: 20px auto; /* Center the wrapper itself */
+            position: relative; /* If you need absolute children within it later */
+        }
+
         #urdf-viewer-container {
             width: 700px;
-            height: 600px;
+            height: 600px; /* Adjusted height for better proportions */
             border: 1px solid #ccc;
-            margin: 20px auto;
             display: block;
-            float: left; /* To allow controls to float beside it */
+            position: relative; /* ESSENTIAL for absolute children positioning */
+            overflow: hidden; /* Clips content outside its bounds */
+            background-color: #263238; /* Match scene background */
         }
         #urdf-viewer-container canvas {
             display: block;
             width: 100%;
             height: 100%;
         }
-        /* --- NEW STYLES FOR JOINT CONTROLS --- */
-         #joint-controls-container {
-            width: 300px;
-            height: 600px;
-            border: 1px solid #ccc;
-            margin: 20px auto;
+
+        /* --- JOINT CONTROLS CONTAINER (NOW ON LEFT AS OVERLAY) --- */
+        #joint-controls-container {
+            width: 280px;
+            height: calc(100% - 20px);
+            border: 1px solid #555;
             padding: 10px;
-            float: left;
+            position: absolute; /* Positioned relative to #urdf-viewer-container */
+            top: 10px; /* Distance from the top of viewer */
+            left: 10px; /* NOW ON THE LEFT SIDE */
             overflow-y: auto;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8);
             color: #eee;
             font-family: sans-serif;
             box-sizing: border-box;
+            z-index: 5;
+            border-radius: 5px;
         }
+
         .joint-control {
             margin-bottom: 5px;
             padding-bottom: 5px;
@@ -51,26 +69,21 @@ Here is little Icub and you can play with it :)
         .joint-control:last-child {
             border-bottom: none;
         }
-        
-        /* --- NEW: Style for the joint header (name and value) --- */
+
         .joint-header {
-            display: flex; /* Enable flexbox */
-            justify-content: space-between; /* Puts space between items (name and value) */
-            align-items: center; /* Vertically centers items if they have different heights */
-            margin-bottom: 5px; /* Add some space below the header */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
         }
-        /* Make the label part of the flex container, remove its block display */
         .joint-control label {
-            /* display: block; */ /* Remove this, flex item handles it */
-            margin-bottom: 0; /* Reset margin from previous rule */
+            margin-bottom: 0;
             font-weight: bold;
             color: white;
         }
-        /* The value display no longer needs text-align: right */
         .joint-value {
             font-size: 0.9em;
-            margin-top: 0; /* Reset margin from previous rule */
-            /* text-align: right; */ /* Flexbox handles alignment now */
+            margin-top: 0;
         }
 
         .joint-control input[type="range"] {
@@ -101,42 +114,53 @@ Here is little Icub and you can play with it :)
             background: #4CAF50;
             cursor: pointer;
         }
-        
-        /* Clearfix to contain floats */
+
+        /* Clearfix no longer needed as floats are removed */
         .viewer-and-controls-wrapper::after {
             content: "";
             display: table;
             clear: both;
         }
-        #toggleWaveButton {
-            display: block;
-            width: calc(100% - 20px); /* Full width minus padding */
-            padding: 10px;
-            margin: 10px; /* Adjust margin to fit well */
-            background-color: #007bff; /* Blue button */
+
+        /* --- MAXIMIZE BUTTON (now top-right) --- */
+        #maximizeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px; /* NOW ON THE RIGHT SIDE */
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 5px 10px;
             cursor: pointer;
-            font-size: 1.1em;
-            text-align: center;
+            border-radius: 3px;
+            font-size: 0.8em;
+            z-index: 10;
         }
-        #toggleWaveButton:hover {
-            background-color: #0056b3;
+        #maximizeButton:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* --- MAXIMIZED STATE FOR VIEWER CONTAINER --- */
+        #urdf-viewer-container.maximized {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            z-index: 9999;
         }
     </style>
 
-
     <div class="viewer-and-controls-wrapper">
         <div id="urdf-viewer-container">
+            <button id="maximizeButton">Maximize</button>
 
-            <script type="module" src="../_static/urdf_loader/example/src/redirect.js"></script>
+            <div id="joint-controls-container">
+                <h2>Joint Controls</h2>
+                <p>Loading joints...</p>
+                </div>
 
             <script type="module" src="../_static/urdf_loader/example/src/icub.js"></script>
-        </div>
-
-        <div id="joint-controls-container">
-            <h2>Joint Controls</h2>
-            <p>Loading joints...</p>
         </div>
     </div>

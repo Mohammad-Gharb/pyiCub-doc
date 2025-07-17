@@ -67,6 +67,4 @@ Whether you're contributing to development or just getting started, this documen
    :hidden:
    :caption: geometry:
 
-   geometry/simple
-   geometry/complex
    geometry/Icub
