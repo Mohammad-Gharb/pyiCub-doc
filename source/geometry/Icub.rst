@@ -46,7 +46,7 @@ Here is little Icub and you can play with it :)
         /* --- JOINT CONTROLS CONTAINER (NOW ON LEFT AS OVERLAY) --- */
         #joint-controls-container {
             width: 280px;
-            height: calc(100% - 20px);
+            height: auto;
             border: 1px solid #555;
             padding: 10px;
             position: absolute; /* Positioned relative to #urdf-viewer-container */
@@ -150,6 +150,29 @@ Here is little Icub and you can play with it :)
             margin: 0;
             z-index: 9999;
         }
+        #joint-controls-wrapper.hidden #toggle-controls:before {
+            content: "show controls";
+        }
+        #joint-control-toggle:hover{
+            color : black;
+        }
+
+        #joint-controls-wrapper.hidden > *:not(#toggle-controls) {
+            display: none;
+        }
+        #joint-control-toggle{
+        overflow-y: auto;
+        background-color: rgba(51, 51, 51, 0.8);
+        color: #eee;
+        font-family: sans-serif;
+        box-sizing: border-box;
+        z-index: 5;
+        border: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 20px;
+        }
+
     </style>
 
     <div class="viewer-and-controls-wrapper">
@@ -157,7 +180,8 @@ Here is little Icub and you can play with it :)
             <button id="maximizeButton">Maximize</button>
 
             <div id="joint-controls-container">
-                <h2>Joint Controls</h2>
+                <button id="joint-control-toggle">Joint Controls</button>
+                <div id='joint-controls-list'></div>
                 <p>Loading joints...</p>
                 </div>
 

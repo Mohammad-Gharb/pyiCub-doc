@@ -65,6 +65,6 @@ Whether you're contributing to development or just getting started, this documen
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: geometry:
+   :caption: icub robot:
 
    geometry/Icub

@@ -23,6 +23,7 @@ import URDFLoader from '../../src/URDFLoader.js';
 let scene, camera, renderer, robot, controls;
 let viewerContainer;
 let jointControlsContainer;
+let jointControlsWrapper;
 // let toggleWaveButton; // <-- REMOVED
 let maximizeButton;
 
@@ -33,8 +34,8 @@ let isWaving = true; // Waving is ON by default
 let waveStartTime = 0; // Will be set when robot loads
 const waveSpeed = 2;
 const waveJointName = 'r_elbow'; // Waving hand joint. Can be 'r_elbow' if preferred.
-
 let jointSliders = {};
+let jointControlToggle;
 
 init();
 render();
@@ -126,7 +127,7 @@ function init() {
 
         cameraDistance *= 0.8; // Add some padding so it's not right on the edge of the view
 
-        camera.position.set(center.x + cameraDistance * 0.5, center.y + cameraDistance * 0.75, center.z + cameraDistance * 1.5);
+        camera.position.set(center.x + cameraDistance , center.y + cameraDistance * 0.75, center.z + cameraDistance * 1.5);
         camera.lookAt(center); // Make camera look at the center of the robot
 
         // --- OPTIMIZED ORBITCONTROLS ---
@@ -136,8 +137,14 @@ function init() {
         controls.update(); // Crucial: update controls after changing target and camera position
 
         waveStartTime = performance.now();
-        if (jointControlsContainer) {
-            jointControlsContainer.innerHTML = '<h2>Joint Controls</h2>';
+         // Create a wrapper div for all joint controls
+        jointControlsWrapper = document.createElement('div');
+        jointControlsContainer.innerHTML =  '<button id="joint-control-toggle">Joint Controls</button>';
+        jointControlsWrapper.id = 'joint-controls-list'; // Give it an ID for potential styling/access
+            // You can add styles to this wrapper if needed, e.g., jointControlsWrapper.style.padding = '5px';
+        jointControlsContainer.appendChild(jointControlsWrapper); // Append wrapper to the main container
+        if (jointControlsWrapper) {
+            // jointControlsWrapper.innerHTML =
             for (const jointName in robot.joints) {
                 const joint = robot.joints[jointName];
 
@@ -174,8 +181,15 @@ function init() {
                     };
 
                     controlDiv.appendChild(slider);
-                    jointControlsContainer.appendChild(controlDiv);
+                    jointControlsWrapper.appendChild(controlDiv);
                     jointSliders[jointName] = { slider: slider, valueDisplay: valueDisplay };
+                    jointControlToggle =  document.getElementById('joint-control-toggle');
+
+                    jointControlToggle.addEventListener('click', e => {
+                       jointControlsWrapper.classList.toggle('hidden');
+                        console.log("joint control toggle clicked");
+                    });
+                    jointControlsWrapper.classList.toggle('hidden'); //hide the joint controls by default
                 }
             }
         }
@@ -205,6 +219,7 @@ function init() {
 
 
 }
+
 
 function onClick(event) {
     isWaving = false
