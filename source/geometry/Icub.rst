@@ -46,7 +46,7 @@ Here is little Icub and you can play with it :)
         /* --- JOINT CONTROLS CONTAINER (NOW ON LEFT AS OVERLAY) --- */
         #joint-controls-container {
             width: 280px;
-            height: auto;
+            max-height: 100%;
             border: 1px solid #555;
             padding: 10px;
             position: absolute; /* Positioned relative to #urdf-viewer-container */
